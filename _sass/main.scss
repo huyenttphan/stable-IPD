@@ -147,6 +147,7 @@ animation: loader-animate 1.5s infinite alternate ease-in-out;
 
       a{
         display:block;
+        margin-bottom: 30px;
       }
     }
   }
@@ -156,7 +157,121 @@ animation: loader-animate 1.5s infinite alternate ease-in-out;
     left:0;
     width:100%;
   }
-  
+  //Fixed nav on scrolling
+  .fixed-nav{
+    position:fixed;
+    z-index:999;
+    top:-20px;
+    left:0;
+    width:100%;
+    background:#fff;
+    opacity:0;
+    transition: all .3s;
+    box-shadow: 0 1px 1px lighten($brown, 70%);
+    &.sticky{
+      opacity:1;
+      top:0;
+    }
+  }
+  .wrapper-nav{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    position: relative;
+
+    @media (max-width:$screen-sm-min){
+      //display:block;
+    }
+  }
+  .fixed-nav-items{
+    list-style: none;
+    display:flex;
+
+    @media (max-width:$screen-sm-min){
+      display:block;
+      opacity:0;
+      position: absolute;
+      width: 100%;
+      background:#fff;
+      top: 0;
+      right:-100%;
+      padding-top: 30px;
+      height: 100vh;
+      margin-top: 74px;
+      transition: all .3s;
+      text-align: center;
+      &.opened{
+        opacity:1;
+        right:0;
+      }
+    }
+  }
+  .fixed-nav-item{
+    a{
+      color:$brown;
+      padding: 0 10px;
+      transition: all .3s;
+      font-weight: 600;
+
+      &:hover{
+        color:$orange;
+      }
+    }
+    @media (max-width:$screen-sm-min){
+      padding: 15px 0;
+      a{
+        padding: 0 50px;
+      }
+      .smooth{
+        font-size: 3em;
+      }
+    }
+  }
+  //Hamburger on mobile
+  .nav-burger{
+    display:none;
+
+    @media (max-width:$screen-sm-min){
+        display:inline-block;
+        position: relative;
+        padding: 13px;
+        background: none;
+        border:none;
+        outline:none;
+        cursor:pointer;
+        .bar{
+            display:block;
+            height:2px;
+            background:$brown;
+            transition:all .3s;
+        }
+        .bar-1{
+            width:25px;
+        }
+        .bar-2{
+            width:17px;
+            margin-top: 5px;
+            opacity:1;
+        }
+        .bar-3{
+            width:20px;
+            margin-top: 5px;
+        }
+    }
+
+    &.clicked{
+        .bar-1{
+            transform: rotate(225deg);
+        }
+        .bar-2{
+            opacity:0;
+        }
+        .bar-3{
+            width:25px;
+            transform: rotate(225deg);
+        }
+    }
+}
   //Section common styling
   .section{
     text-align:center;
@@ -202,6 +317,10 @@ animation: loader-animate 1.5s infinite alternate ease-in-out;
     text-align: left;
     grid-column: 1 / 4;
     grid-row: 1 / 3;
+    @media (max-width:$screen-sm-min){
+      grid-column: 1/6;
+      grid-row: 2 / 3;
+    }
   }
   .intro-img{
     width:70%;
@@ -228,6 +347,12 @@ animation: loader-animate 1.5s infinite alternate ease-in-out;
     grid-column: 4 / 6;
     grid-row: 2 / 3;
     font-size:1.1em;
+
+    @media (max-width:$screen-sm-min){
+      padding-right: 15px;
+      grid-column: 2 / 6;
+      grid-row: 3 / 3;
+    }
   }
   //How it works
   .how-text{
@@ -237,12 +362,21 @@ animation: loader-animate 1.5s infinite alternate ease-in-out;
     grid-template-rows: repeat(3, auto);
     grid-row-gap: 3em;
     grid-column-gap:1.5em;
+
+    @media (max-width:$screen-sm-min){
+      grid-template-columns:repeat(1, 1fr);
+      grid-template-rows:auto;
+      padding: 0 30px;
+    }
   }
   .how-heading{
     grid-column:2/3;
     text-transform:uppercase;
     letter-spacing:.1em;
-    color:$orange;
+    color:$brown;
+    @media (max-width:$screen-sm-min){
+      grid-column: 1/2;
+    }
   }
   .how-step{
   }
@@ -270,6 +404,7 @@ animation: loader-animate 1.5s infinite alternate ease-in-out;
   .feature-icon{
     fill:$orange;
     width:50px;
+    height: 150px;
   }
   .feature-icon--wheel{
     width:40px;
@@ -295,6 +430,11 @@ animation: loader-animate 1.5s infinite alternate ease-in-out;
     grid-gap: 4em;
     margin: 50px 0;
     padding:0 15px;
+
+    @media (max-width:$screen-sm-min){
+      grid-gap: 2.5em;
+      padding: 0 20px;
+    }
   }
   .member{
     text-align: center;

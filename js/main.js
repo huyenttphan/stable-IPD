@@ -1,3 +1,4 @@
+
 jQuery(function(){
     // jQuery for page scrolling feature
     jQuery('a.smooth[href^=#]').on('click', function(){
@@ -5,20 +6,39 @@ jQuery(function(){
 			var $speed = 500;
 			var $href= jQuery(this).attr("href");
             var $target = jQuery($href == "#" || $href == "" ? 'html' : $href);
-			var position = $target.offset().top;
+			var position = $target.offset().top - 75;
 			jQuery("html, body").animate({scrollTop:position}, $speed, "swing");
 			return false;
     });
 
     //Sticky navigation bar
-    var $_globalNav = $('.global-nav');
-    var $_scrollHeight = $('.js-hero').height() - 100;
+    var fixedNav = $('.fixed-nav');
+    var scrollHeight = $('header').height();
 
     $(window).scroll(function() {
-        if($(this).scrollTop() > $_scrollHeight) {
-            $_globalNav.addClass('sticky');
+        if($(this).scrollTop() > scrollHeight) {
+            fixedNav.addClass('sticky');
         } else {
-            $_globalNav.removeClass('sticky');
+            fixedNav.removeClass('sticky');
+        }
+    });
+
+    //Clicking hamburger on mobile
+    var burger = $('.nav-burger');
+    var navList = $('.fixed-nav-items');
+    var navLink = $('.fixed-nav-item .smooth');
+
+    burger.on('click', function(){
+        burger.toggleClass('clicked');
+        if (burger.hasClass('clicked')){
+            navList.addClass('opened');
+            //Clicking on nav link on mobile closes mobile navigation
+            navLink.on('click', function(){
+                burger.removeClass('clicked');
+                navList.removeClass('opened');
+            });
+        } else{
+            navList.removeClass('opened');
         }
     });
 
@@ -43,13 +63,8 @@ jQuery(function(){
     });
 });
 
-function noscroll() {
-    window.scrollTo( 0, 0 );
-}
-
 $(window).on('load', function(){
     TweenMax.to('.loading', 0.5, {opacity: 0, onComplete: function () {
-        noscroll();
         setTimeout(function(){
             $('.loading').remove();
         }, 300)
