@@ -21,7 +21,8 @@ layout: default
                 <li class="nav-item"><a class="smooth" href="#video"><span>Video</span></a></li>
             </ul>
         </nav>
-        <img class="shape" src="/img/shape.svg">
+        <img class="shape pc-visible" src="/img/shape.svg">
+        <img class="shape sp-visible" src="/img/shape_sp.svg">
     </div>
     <div class="fixed-nav">
         <div class="wrapper wrapper-nav">
@@ -121,7 +122,6 @@ layout: default
     </section>
     <section class="section" id="video">
         <h2 class="section-heading"><span>Video</span></h2>
-        <script src="https://use.fontawesome.com/fc6c697e0b.js"></script>
         <a class="button video-trigger" data-video="https://player.vimeo.com/video/261909415?autoplay=1&byline=0&portrait=0"><span></span></a>
         <div class="iframe-pop">
             <div class="inner">

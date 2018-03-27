@@ -24,6 +24,7 @@ jQuery(function(){
     });
 
     //Clicking hamburger on mobile
+    var body = $('#pagetop');
     var burger = $('.nav-burger');
     var navList = $('.fixed-nav-items');
     var navLink = $('.fixed-nav-item .smooth');
@@ -32,13 +33,16 @@ jQuery(function(){
         burger.toggleClass('clicked');
         if (burger.hasClass('clicked')){
             navList.addClass('opened');
+            body.addClass('overflow-hidden');
             //Clicking on nav link on mobile closes mobile navigation
             navLink.on('click', function(){
                 burger.removeClass('clicked');
                 navList.removeClass('opened');
+                body.removeClass('overflow-hidden');
             });
         } else{
             navList.removeClass('opened');
+            body.removeClass('overflow-hidden');
         }
     });
 
